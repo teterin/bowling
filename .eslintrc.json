@@ -9,5 +9,8 @@
     "import/prefer-default-export": "off",
     "react/forbid-prop-types": "off"
   },
+  "settings": {
+    "import/resolver": "webpack"
+  },
   "parser": "babel-eslint"
 }
