@@ -11,6 +11,7 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, 'src'),
       components: path.resolve(__dirname, 'src/components'),
+      containers: path.resolve(__dirname, 'src/containers'),
     },
   },
   devtool: process.env.NODE_ENV === 'production' ? '' : 'eval',
