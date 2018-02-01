@@ -1,13 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import GamePage from 'components/GamePage';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import StartPage from 'components/StartPage';
 
 export default function App() {
   return (
     <Router>
       <React.Fragment>
-        <Route exact path="/" component={() => <Redirect to="/game" />} />
-        <Route path="/game" component={GamePage} />
+        <Route exact path="/" component={StartPage} />
+        <Route path="/game" component={() => null} />
       </React.Fragment>
     </Router>
   );

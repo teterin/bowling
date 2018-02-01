@@ -1,5 +1,6 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 module.exports = {
   entry: './src/index.js',
@@ -18,10 +19,23 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader?modules&url=false&localIdentName=[path][name]__[local]__[hash:base64:5]',
-        ],
+        include: /node_modules/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
+        }),
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader?modules&url=false&localIdentName=[path][name]__[local]__[hash:base64:5]',
+            'postcss-loader',
+            'sass-loader',
+          ],
+        }),
       },
     ],
   },
@@ -31,6 +45,7 @@ module.exports = {
       filename: './index.html',
       inject: 'body',
     }),
+    new ExtractTextPlugin('styles.css'),
   ],
   devServer: {
     historyApiFallback: true,
