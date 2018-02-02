@@ -1,9 +1,10 @@
 import React from 'react';
+import { getArray } from 'src/utils';
 import classes from './styles.scss';
 
 export default function ScoreInput({ limit, onSelect }) {
   const length = limit + 1;
-  const model = Array(length).fill();
+  const model = getArray(length);
 
   return (
     <div className={classes.container}>

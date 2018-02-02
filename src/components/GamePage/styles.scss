@@ -6,9 +6,7 @@
 }
 
 .header {
-  height: 100px;
-  border: 1px solid #000;
-  padding: 20px 40px;
+  padding: 20px;
 }
 
 .content {
@@ -16,4 +14,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.table {
+  margin-top: 20px;
 }

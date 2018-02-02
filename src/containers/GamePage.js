@@ -30,6 +30,7 @@ function mapStateToProps(state) {
     frame: getCurrentFrame(state),
     roll: getCurrentRoll(state),
     isOver: isGameOver(state),
+    game: state.game,
   };
 }
 

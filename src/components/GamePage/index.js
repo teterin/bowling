@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './styles.scss';
 import ScoreForm from '../ScoreForm';
+import ScoreSheet from '../ScoreSheet';
 
 function CurrentState({ frame, roll }) {
   return (
@@ -12,12 +13,15 @@ function CurrentState({ frame, roll }) {
 }
 
 export default function GamePage({
-  start, next, currentScoreLimit, frame, roll, isOver,
+  start, next, currentScoreLimit, frame, roll, isOver, game,
 }) {
   return (
     <div className={classes.container}>
       <div className={classes.header}>
         {!isOver ? <CurrentState frame={frame} roll={roll} /> : <h5>Game is over</h5>}
+        <div className={classes.table}>
+          <ScoreSheet data={game} />
+        </div>
       </div>
       <div className={classes.content}>
         {!isOver ? (

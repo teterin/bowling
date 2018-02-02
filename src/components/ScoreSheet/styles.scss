@@ -1,0 +1,14 @@
+.table {
+  thead {
+    th {
+      text-align: center;
+      &:first-child {
+        text-align: left;
+      }
+    }
+  }
+  td {
+    text-align: center;
+    min-width: 30px;
+  }
+}
