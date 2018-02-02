@@ -5,7 +5,7 @@ import classes from './styles.scss';
 
 export default function ScoreSheet({ data, total }) {
   const header = getArray(10);
-  const cols = getArray(20);
+  const cols = getArray(21);
   return (
     <div className="table-responsive">
       <table className={cn('table table-bordered table-sm', classes.table)}>
@@ -13,7 +13,7 @@ export default function ScoreSheet({ data, total }) {
           <tr>
             <th scope="col">Frame</th>
             {header.map((_, idx) => (
-              <th scope="col" colSpan={2} key={idx}>
+              <th scope="col" colSpan={idx === 9 ? 3 : 2} key={idx}>
                 {idx + 1}
               </th>
             ))}
