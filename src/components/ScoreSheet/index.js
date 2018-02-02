@@ -3,7 +3,7 @@ import { getArray } from 'src/utils';
 import cn from 'classnames';
 import classes from './styles.scss';
 
-export default function ScoreSheet({ data }) {
+export default function ScoreSheet({ data, total }) {
   const header = getArray(10);
   const cols = getArray(20);
   return (
@@ -17,12 +17,14 @@ export default function ScoreSheet({ data }) {
                 {idx + 1}
               </th>
             ))}
+            <th scope="col">Total</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">Score</th>
             {cols.map((_, idx) => <td key={idx}>{data[idx]}</td>)}
+            <td>{total}</td>
           </tr>
         </tbody>
       </table>

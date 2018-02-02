@@ -12,7 +12,7 @@ function next(state, { payload: score }) {
   const game = state.game.slice();
   game.push(score);
   if (score === 10) {
-    game.push(0);
+    game.push(null);
   }
 
   return { ...state, game };

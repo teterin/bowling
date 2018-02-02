@@ -13,14 +13,21 @@ function CurrentState({ frame, roll }) {
 }
 
 export default function GamePage({
-  start, next, currentScoreLimit, frame, roll, isOver, game,
+  start,
+  next,
+  currentScoreLimit,
+  frame,
+  roll,
+  isOver,
+  game,
+  total,
 }) {
   return (
     <div className={classes.container}>
       <div className={classes.header}>
         {!isOver ? <CurrentState frame={frame} roll={roll} /> : <h5>Game is over</h5>}
         <div className={classes.table}>
-          <ScoreSheet data={game} />
+          <ScoreSheet data={game} total={total} />
         </div>
       </div>
       <div className={classes.content}>
