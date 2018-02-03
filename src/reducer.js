@@ -19,13 +19,28 @@ function next(state, { payload: score }) {
   return { ...state, game };
 }
 
+function addPlayer(state, { payload: name }) {
+  const players = { ...state.players, [name]: name };
+  return { ...state, players };
+}
+
+function removePlayer(state, { payload: name }) {
+  const players = { ...state.players };
+  delete players[name];
+
+  return { ...state, players };
+}
+
 const reducer = handleActions(
   {
     [actionTypes.START]: start,
     [actionTypes.NEXT]: next,
+    [actionTypes.ADD_PLAYER]: addPlayer,
+    [actionTypes.REMOVE_PLAYER]: removePlayer,
   },
   {
     game: [],
+    players: {},
   },
 );
 

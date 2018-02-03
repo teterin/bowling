@@ -1,12 +1,16 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import StartPage from 'components/StartPage';
-import { start } from '../actions';
+import { start, addPlayer, removePlayer } from '../actions';
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
   return {
-    start: bindActionCreators(start, dispatch),
+    players: Object.keys(state.players),
   };
 }
 
-export default connect(null, mapDispatchToProps)(StartPage);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ addPlayer, removePlayer, start }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StartPage);

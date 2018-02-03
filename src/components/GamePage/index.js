@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './styles.scss';
 import ScoreForm from '../ScoreForm';
 import ScoreSheet from '../ScoreSheet';
+import { withRouter } from 'react-router-dom';
 
 function CurrentState({ frame, roll }) {
   return (
@@ -12,16 +13,13 @@ function CurrentState({ frame, roll }) {
   );
 }
 
-export default function GamePage({
-  start,
-  next,
-  currentScoreLimit,
-  frame,
-  roll,
-  isOver,
-  game,
-  total,
+function GamePage({
+  start, next, currentScoreLimit, frame, roll, isOver, game, total, history,
 }) {
+  const startOver = () => {
+    history.push('/');
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.header}>
@@ -34,7 +32,7 @@ export default function GamePage({
         {!isOver ? (
           <ScoreForm onSelect={next} limit={currentScoreLimit} />
         ) : (
-          <button className="btn btn-primary" onClick={start}>
+          <button className="btn btn-primary" onClick={startOver}>
             Start over
           </button>
         )}
@@ -42,3 +40,5 @@ export default function GamePage({
     </div>
   );
 }
+
+export default withRouter(GamePage);
