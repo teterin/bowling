@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import StartPage from 'components/StartPage';
 import { start, addPlayer, removePlayer } from '../actions';
 
-function mapStateToProps(state) {
+function mapStateToProps({ players }) {
   return {
-    players: Object.keys(state.players),
+    players,
   };
 }
 

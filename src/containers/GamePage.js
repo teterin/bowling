@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GamePage from 'components/GamePage';
-import { next, start } from '../actions';
+import { next } from '../actions';
 import {
   getCurrentScoreLimit,
   getCurrentFrameIdx,
@@ -11,18 +11,29 @@ import {
 } from '../algorithm';
 
 function mapStateToProps(state) {
+  const { currentPlayerIdx, game, players } = state;
+  const isInit = !!game;
+  if (!isInit) {
+    return { isInit };
+  }
+  const table = game[currentPlayerIdx];
   return {
-    currentScoreLimit: getCurrentScoreLimit(state),
-    frame: getCurrentFrameIdx(state) + 1,
-    roll: getCurrentRoll(state),
-    isOver: isGameOver(state),
-    game: state.game,
-    total: getTotal(state),
+    currentScoreLimit: getCurrentScoreLimit(table),
+    frame: getCurrentFrameIdx(table) + 1,
+    roll: getCurrentRoll(table),
+    isOver: isGameOver(game),
+    isInit,
+    player: players[currentPlayerIdx],
+    game: game.map((items, idx) => ({
+      player: players[idx],
+      table: items,
+      total: getTotal(items),
+    })),
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ next, start }, dispatch);
+  return bindActionCreators({ next }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamePage);
