@@ -2,9 +2,9 @@
   "name": "bowling",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-    "dev": "webpack-dev-server",
+    "start": "webpack-dev-server",
     "lint": "eslint --fix --cache \"src/**/*.js\"",
     "test":
       "BABEL_ENV=test mocha --require babel-core/register --file test-helper.js \"src/**/*.test.js\""
