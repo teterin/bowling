@@ -3,7 +3,7 @@ import { getArray } from 'src/utils';
 import cn from 'classnames';
 import classes from './styles.scss';
 
-export default function ScoreSheet({ game = [] }) {
+export default function ScoreSheet({ game }) {
   const header = getArray(10);
   const cols = getArray(21);
   return (

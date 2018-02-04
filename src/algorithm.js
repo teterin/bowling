@@ -8,12 +8,12 @@ function getIdx(frameIdx, rollIdx) {
   return frameIdx * FRAME_ROLL_NUMBER + rollIdx;
 }
 
-function isStrike(table, frameIdx) {
+export function isStrike(table, frameIdx) {
   const firstRollIdx = getIdx(frameIdx, 0);
   return table[firstRollIdx] === MAX_SCORE;
 }
 
-function isSpare(table, frameIdx) {
+export function isSpare(table, frameIdx) {
   const firstRollIdx = getIdx(frameIdx, 0);
   const secondRollIdx = getIdx(frameIdx, 1);
   return table[firstRollIdx] + table[secondRollIdx] === MAX_SCORE;
@@ -81,12 +81,14 @@ function getSumNextRolls(table, startIdx, count) {
 export function getTotal(table) {
   const { length } = table;
   let total = 0;
-  for (let i = 0; i < length; i += FRAME_ROLL_NUMBER) {
-    const frame = Math.floor(i / FRAME_ROLL_NUMBER);
-    if (isStrike(table, frame)) {
-      total += 10 + getSumNextRolls(table, i + 1, 2);
-    } else if (isSpare(table, frame)) {
-      total += 10 + getSumNextRolls(table, i + 1, 1);
+  for (let i = 0; i < length && i <= getIdx(LAST_FRAME_IDX, 0); i += FRAME_ROLL_NUMBER) {
+    const frameIdx = Math.floor(i / FRAME_ROLL_NUMBER);
+    if (isStrike(table, frameIdx)) {
+      const nextIdx = frameIdx === LAST_FRAME_IDX ? i + 1 : getIdx(frameIdx + 1, 0);
+      total += 10 + getSumNextRolls(table, nextIdx, 2);
+    } else if (isSpare(table, frameIdx)) {
+      const nextIdx = frameIdx === LAST_FRAME_IDX ? i + 2 : getIdx(frameIdx + 1, 0);
+      total += 10 + getSumNextRolls(table, nextIdx, 1);
     } else {
       total += table[i] + (i <= length - 2 ? table[i + 1] : 0);
     }
