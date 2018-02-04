@@ -8,6 +8,8 @@ import {
   getCurrentRoll,
   isGameOver,
   getTotal,
+  MAX_SCORE,
+  FRAME_ROLL_NUMBER,
 } from '../algorithm';
 
 function mapStateToProps(state) {
@@ -26,7 +28,17 @@ function mapStateToProps(state) {
     player: players[currentPlayerIdx],
     game: game.map((items, idx) => ({
       player: players[idx],
-      table: items,
+      table: items.map((item, i) => {
+        if (item === MAX_SCORE) return 'X';
+        if (
+          i % FRAME_ROLL_NUMBER === 1 &&
+          items[i - 1] !== MAX_SCORE &&
+          items[i - 1] + item === MAX_SCORE
+        ) {
+          return '/';
+        }
+        return item;
+      }),
       total: getTotal(items),
     })),
   };

@@ -6,11 +6,13 @@ import ScoreSheet from '../ScoreSheet';
 
 function CurrentState({ frame, roll, player }) {
   return (
-    <React.Fragment>
-      <h5>Frame #{frame}</h5>
-      <h6>Roll #{roll}</h6>
-      <h6>Current player: {player}</h6>
-    </React.Fragment>
+    <div className="d-flex justify-content-between">
+      <div>
+        <h5>Frame #{frame}</h5>
+        <h6>Roll #{roll}</h6>
+      </div>
+      <h5>Player: {player}</h5>
+    </div>
   );
 }
 

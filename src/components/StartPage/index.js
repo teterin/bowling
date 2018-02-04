@@ -19,7 +19,12 @@ function StartPage({
         <PlayerList data={players} onRemove={removePlayer} />
       </div>
       <div className={classes.startBtn}>
-        <button type="button" className="btn btn-primary btn-lg" onClick={handlerClick}>
+        <button
+          type="button"
+          className="btn btn-primary btn-lg"
+          onClick={handlerClick}
+          disabled={!players.length}
+        >
           Start
         </button>
       </div>
