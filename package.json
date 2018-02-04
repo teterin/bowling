@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "lint": "eslint --fix --cache \"src/**/*.js\"",
-    "test": "mocha --require babel-core/register --file test-helper.js \"src/**/*.test.js\""
+    "test":
+      "BABEL_ENV=test mocha --require babel-core/register --file test-helper.js \"src/**/*.test.js\""
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.1.2",
     "babel-loader": "^7.1.2",
+    "babel-plugin-rewire": "^1.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",

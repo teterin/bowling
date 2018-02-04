@@ -10,11 +10,11 @@ import {
   FRAME_NUMBERS,
 } from './algorithm';
 
-function start(state) {
+export function start(state) {
   return { ...state, currentPlayerIdx: 0, game: state.players.map(() => []) };
 }
 
-function shouldSwitchPlayer(table) {
+export function shouldSwitchPlayer(table) {
   const { length } = table;
   if (
     isPlayerGameOver(table) ||
@@ -25,7 +25,7 @@ function shouldSwitchPlayer(table) {
   return false;
 }
 
-function getNextPlayerIdx(state) {
+export function getNextPlayerIdx(state) {
   const { game, players } = state;
   let { currentPlayerIdx } = state;
   do {
@@ -37,7 +37,7 @@ function getNextPlayerIdx(state) {
   return currentPlayerIdx;
 }
 
-function next(state, { payload: score }) {
+export function next(state, { payload: score }) {
   if (isGameOver(state.game)) {
     return state;
   }
@@ -58,14 +58,14 @@ function next(state, { payload: score }) {
   return { ...state, game, currentPlayerIdx };
 }
 
-function addPlayer(state, { payload: name }) {
+export function addPlayer(state, { payload: name }) {
   const players = state.players.slice();
   players.push(name);
 
   return { ...state, players };
 }
 
-function removePlayer(state, { payload: name }) {
+export function removePlayer(state, { payload: name }) {
   const players = state.players.slice();
   const idx = players.indexOf(name);
   if (idx !== -1) {
