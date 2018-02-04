@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import cn from 'classnames';
 import classes from './styles.scss';
 import PlayerForm from '../PlayerForm';
 import PlayerList from '../PlayerList';

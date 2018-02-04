@@ -11,7 +11,10 @@
     "import/extensions": "off",
     "react/jsx-filename-extension": "off",
     "import/prefer-default-export": "off",
-    "react/forbid-prop-types": "off"
+    "react/forbid-prop-types": "off",
+    "no-mixed-operators": "warn",
+    "react/prop-types": "warn",
+    "react/no-array-index-key": "warn"
   },
   "settings": {
     "import/resolver": "webpack"

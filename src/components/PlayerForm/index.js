@@ -31,7 +31,6 @@ export default class PlayerForm extends React.Component {
       <form className="form" onSubmit={this.handleSubmit}>
         <div className="input-group">
           <input
-            autoFocus
             type="text"
             className="form-control"
             placeholder="Player name"
